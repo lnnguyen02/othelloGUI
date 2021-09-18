@@ -1,5 +1,9 @@
 package othelloGUI;
 
+import java.awt.event.*;
+import java.awt.*;
+import javax.swing.*;
+
 /*
  *  8 by 8 game
  *  
@@ -19,7 +23,8 @@ package othelloGUI;
  *  
  *  @author Leon Nguyen
  */
-public class Othello {
+public class Othello extends JPanel {
+	
 	private int[][] board;
 
 	public Othello() {
@@ -34,5 +39,7 @@ public class Othello {
 		board[3][4] = 1;
 		board[4][3] = 1;
 		board[4][4] = 2;
+
+		setLayout(new GridLayout(8, 8));
 	}
 }
