@@ -11,7 +11,7 @@ public class Driver
       Othello screen = new Othello();
       frame.setContentPane(screen);
       frame.setSize(1200, 1000);
-      frame.setLocation(100, 50);
+      frame.setLocation(50, 50);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setVisible(true);
    }
