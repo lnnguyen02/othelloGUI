@@ -26,8 +26,12 @@ import javax.swing.*;
 public class Othello extends JPanel {
 
 	private int[][] board;
+	private int turn = 1;
 	private JButton[][] buttons;
 
+	/**
+	 * 
+	 */
 	public Othello() {
 
 		setLayout(new GridLayout(8, 8));
@@ -40,7 +44,7 @@ public class Othello extends JPanel {
 				buttons[i][j] = new JButton();
 				buttons[i][j].setPreferredSize(new Dimension(100, 100));
 				add(buttons[i][j]);
-				buttons[i][j].addActionListener(new clicked(i, j));
+				buttons[i][j].addActionListener(new Clicked(i, j));
 			}
 		}
 
@@ -48,35 +52,58 @@ public class Othello extends JPanel {
 		board[3][4] = 1;
 		board[4][3] = 1;
 		board[4][4] = 2;
-		
+
 		updateBoard();
 	}
 
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 */
+	public boolean checkUp(int x, int y) {
+		if (x - 1 < 0) {
+			return false;
+		} else if (board[x - 1][y] != turn) {
+			return checkUp(x - 1, y);
+		} else {
+			return true;
+		}
+	}
+
+	/**
+	 * 
+	 */
 	public void updateBoard() {
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[0].length; j++) {
-				if(board[i][j]==1) {
+				if (board[i][j] == 1) {
 					buttons[i][j].setIcon(new ImageIcon("black2.png"));
-				}
-				else if(board[i][j]==2) {
+				} else if (board[i][j] == 2) {
 					buttons[i][j].setIcon(new ImageIcon("white2.png"));
-				}
-				else {
-					
+				} else {
+
 				}
 			}
 		}
 	}
 
-	private class clicked implements ActionListener {
+	/**
+	 * 
+	 * @author Leon
+	 *
+	 */
+	private class Clicked implements ActionListener {
 		int r, c;
 
-		public clicked(int a, int b) {
+		public Clicked(int a, int b) {
 			r = a;
 			c = b;
 		}
 
 		public void actionPerformed(ActionEvent e) {
+			if (board[r][c] == 0)
+				System.out.println(checkUp(r, c));
 		}
 
 	}
