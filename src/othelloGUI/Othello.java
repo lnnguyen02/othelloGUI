@@ -58,8 +58,9 @@ public class Othello extends JPanel {
 
 	/**
 	 * 
-	 * @param a
-	 * @param b
+	 * @param x
+	 * @param y
+	 * @return
 	 */
 	public boolean checkUp(int x, int y) {
 		if (x - 1 < 0) {
@@ -69,6 +70,76 @@ public class Othello extends JPanel {
 		} else {
 			return true;
 		}
+	}
+
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public boolean checkDown(int x, int y) {
+		return true;
+	}
+
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public boolean checkLeft(int x, int y) {
+		return true;
+	}
+
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public boolean checkRight(int x, int y) {
+		return true;
+	}
+
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public boolean checkUpLeft(int x, int y) {
+		return true;
+	}
+
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public boolean checkUpRight(int x, int y) {
+		return true;
+	}
+
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public boolean checkDownLeft(int x, int y) {
+		return true;
+	}
+
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @return
+	 */
+	public boolean checkDownRight(int x, int y) {
+		return true;
 	}
 
 	/**
@@ -102,8 +173,17 @@ public class Othello extends JPanel {
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			if (board[r][c] == 0)
+			if (board[r][c] == 0) {
 				System.out.println(checkUp(r, c));
+				System.out.println(checkDown(r, c));
+				System.out.println(checkRight(r, c));
+				System.out.println(checkLeft(r, c));
+
+				System.out.println(checkUpRight(r, c));
+				System.out.println(checkUpLeft(r, c));
+				System.out.println(checkUpRight(r, c));
+				System.out.println(checkUpLeft(r, c));
+			}
 		}
 
 	}
