@@ -1,7 +1,5 @@
 package othelloGUI;
 
-import java.awt.event.*; 
-import java.awt.*; 
 import javax.swing.*;
 
 public class Driver
@@ -10,8 +8,8 @@ public class Driver
       JFrame frame = new JFrame("Othello");
       Othello screen = new Othello();
       frame.setContentPane(screen);
-      frame.setSize(1200, 1000);
-      frame.setLocation(50, 50);
+      frame.setSize(1000, 1000);
+      frame.setLocation(0, 0);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       frame.setVisible(true);
    }
