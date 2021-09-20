@@ -38,8 +38,11 @@ public class Othello extends JPanel {
 	 * 
 	 */
 	public Othello() {
+		setLayout(new BorderLayout());
 
-		setLayout(new GridLayout(8, 8));
+		JPanel grid = new JPanel();
+		grid.setLayout(new GridLayout(8, 8));
+		add(grid, BorderLayout.CENTER);
 		board = new int[8][8];
 		buttons = new JButton[8][8];
 
@@ -48,7 +51,7 @@ public class Othello extends JPanel {
 				board[i][j] = 0;
 				buttons[i][j] = new JButton();
 				buttons[i][j].setPreferredSize(new Dimension(100, 100));
-				add(buttons[i][j]);
+				grid.add(buttons[i][j]);
 				buttons[i][j].addActionListener(new Clicked(i, j));
 			}
 		}
