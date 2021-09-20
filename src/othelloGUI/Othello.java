@@ -142,7 +142,7 @@ public class Othello extends JPanel {
 		int x = r - 1;
 		int y = c + 1;
 
-		if (x < 0 || y < 0) {
+		if (x < 0 || y > 7) {
 			return false;
 		} else if (board[x][y] != turn) {
 			return checkUpRight(x, y);
@@ -180,7 +180,7 @@ public class Othello extends JPanel {
 		int x = r + 1;
 		int y = c + 1;
 
-		if (x < 0 || y < 0) {
+		if (x > 7 || y > 7) {
 			return false;
 		} else if (board[x][y] != turn) {
 			return checkDownRight(x, y);
@@ -199,7 +199,7 @@ public class Othello extends JPanel {
 		int x = r + 1;
 		int y = c - 1;
 
-		if (x < 0 || y < 0) {
+		if (x > 7 || y < 0) {
 			return false;
 		} else if (board[x][y] != turn) {
 			return checkDownLeft(x, y);
