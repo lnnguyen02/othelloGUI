@@ -58,7 +58,7 @@ public class Othello extends JPanel {
 		board[4][3] = 1;
 		board[4][4] = 2;
 
-		updateBoard();
+		updateButtons();
 	}
 
 	/**
@@ -82,6 +82,7 @@ public class Othello extends JPanel {
 			yIndexes.push(y);
 			return checkUp(x, y);
 		} else {
+			flipButtons();
 			return true;
 		}
 	}
@@ -107,6 +108,7 @@ public class Othello extends JPanel {
 			yIndexes.push(y);
 			return checkDown(x, y);
 		} else {
+			flipButtons();
 			return true;
 		}
 	}
@@ -132,6 +134,7 @@ public class Othello extends JPanel {
 			yIndexes.push(y);
 			return checkRight(x, y);
 		} else {
+			flipButtons();
 			return true;
 		}
 	}
@@ -157,6 +160,7 @@ public class Othello extends JPanel {
 			yIndexes.push(y);
 			return checkLeft(x, y);
 		} else {
+			flipButtons();
 			return true;
 		}
 	}
@@ -182,6 +186,7 @@ public class Othello extends JPanel {
 			yIndexes.push(y);
 			return checkUpRight(x, y);
 		} else {
+			flipButtons();
 			return true;
 		}
 	}
@@ -207,6 +212,7 @@ public class Othello extends JPanel {
 			yIndexes.push(y);
 			return checkUpLeft(x, y);
 		} else {
+			flipButtons();
 			return true;
 		}
 	}
@@ -232,6 +238,7 @@ public class Othello extends JPanel {
 			yIndexes.push(y);
 			return checkDownRight(x, y);
 		} else {
+			flipButtons();
 			return true;
 		}
 	}
@@ -257,6 +264,7 @@ public class Othello extends JPanel {
 			yIndexes.push(y);
 			return checkDownLeft(x, y);
 		} else {
+			flipButtons();
 			return true;
 		}
 	}
@@ -264,7 +272,7 @@ public class Othello extends JPanel {
 	/**
 	 * 
 	 */
-	public void updateBoard() {
+	public void updateButtons() {
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[0].length; j++) {
 				if (board[i][j] == 1) {
@@ -277,14 +285,31 @@ public class Othello extends JPanel {
 			}
 		}
 	}
-	
+
+	/**
+	 * 
+	 */
+	public void updateBoard(int r, int c) {
+		if (board[r][c] == 0) {
+			board[r][c] = turn;
+		} else if (board[r][c] == 1) {
+			board[r][c] = 2;
+		} else {
+			board[r][c] = 1;
+		}
+
+		updateButtons();
+	}
+
 	/**
 	 * 
 	 */
 	public void flipButtons() {
-		
+		while (!xIndexes.empty()) {
+			updateBoard(xIndexes.pop(), yIndexes.pop());
+		}
 	}
-	
+
 	/**
 	 * 
 	 * @author Leon
@@ -300,6 +325,8 @@ public class Othello extends JPanel {
 
 		public void actionPerformed(ActionEvent e) {
 			if (board[row][col] == 0) {
+				updateBoard(row, col);
+
 				checkUp(row, col);
 				checkDown(row, col);
 				checkRight(row, col);
@@ -307,10 +334,19 @@ public class Othello extends JPanel {
 
 				checkUpRight(row, col);
 				checkUpLeft(row, col);
-				checkUpRight(row, col);
-				checkUpLeft(row, col);
+				checkDownRight(row, col);
+				checkDownLeft(row, col);
+
+				if (turn == 1) {
+					turn = 2;
+				} else {
+					turn = 1;
+				}
 			}
 		}
 
 	}
 }
+
+//todo need to update the turns, flip the clicked spots, and check the spot to see if it is valid
+//also edit the layout if u can
