@@ -62,11 +62,14 @@ public class Othello extends JPanel {
 	 * @param y
 	 * @return
 	 */
-	public boolean checkUp(int x, int y) {
-		if (x - 1 < 0) {
+	public boolean checkUp(int r, int c) {
+		int x = r - 1;
+		int y = c;
+
+		if (x < 0) {
 			return false;
-		} else if (board[x - 1][y] != turn) {
-			return checkUp(x - 1, y);
+		} else if (board[x][y] != turn) {
+			return checkUp(x, y);
 		} else {
 			return true;
 		}
@@ -78,8 +81,17 @@ public class Othello extends JPanel {
 	 * @param y
 	 * @return
 	 */
-	public boolean checkDown(int x, int y) {
-		return true;
+	public boolean checkDown(int r, int c) {
+		int x = r + 1;
+		int y = c;
+
+		if (x > 7) {
+			return false;
+		} else if (board[x][y] != turn) {
+			return checkDown(x, y);
+		} else {
+			return true;
+		}
 	}
 
 	/**
@@ -88,8 +100,17 @@ public class Othello extends JPanel {
 	 * @param y
 	 * @return
 	 */
-	public boolean checkLeft(int x, int y) {
-		return true;
+	public boolean checkRight(int r, int c) {
+		int x = r;
+		int y = c + 1;
+
+		if (y > 7) {
+			return false;
+		} else if (board[x][y] != turn) {
+			return checkRight(x, y);
+		} else {
+			return true;
+		}
 	}
 
 	/**
@@ -98,8 +119,17 @@ public class Othello extends JPanel {
 	 * @param y
 	 * @return
 	 */
-	public boolean checkRight(int x, int y) {
-		return true;
+	public boolean checkLeft(int r, int c) {
+		int x = r;
+		int y = c - 1;
+
+		if (y < 0) {
+			return false;
+		} else if (board[x][y] != turn) {
+			return checkLeft(x, y);
+		} else {
+			return true;
+		}
 	}
 
 	/**
@@ -108,8 +138,17 @@ public class Othello extends JPanel {
 	 * @param y
 	 * @return
 	 */
-	public boolean checkUpLeft(int x, int y) {
-		return true;
+	public boolean checkUpRight(int r, int c) {
+		int x = r - 1;
+		int y = c + 1;
+
+		if (x < 0 || y < 0) {
+			return false;
+		} else if (board[x][y] != turn) {
+			return checkUpRight(x, y);
+		} else {
+			return true;
+		}
 	}
 
 	/**
@@ -118,8 +157,17 @@ public class Othello extends JPanel {
 	 * @param y
 	 * @return
 	 */
-	public boolean checkUpRight(int x, int y) {
-		return true;
+	public boolean checkUpLeft(int r, int c) {
+		int x = r - 1;
+		int y = c - 1;
+
+		if (x < 0 || y < 0) {
+			return false;
+		} else if (board[x][y] != turn) {
+			return checkUpLeft(x, y);
+		} else {
+			return true;
+		}
 	}
 
 	/**
@@ -128,8 +176,17 @@ public class Othello extends JPanel {
 	 * @param y
 	 * @return
 	 */
-	public boolean checkDownLeft(int x, int y) {
-		return true;
+	public boolean checkDownRight(int r, int c) {
+		int x = r + 1;
+		int y = c + 1;
+
+		if (x < 0 || y < 0) {
+			return false;
+		} else if (board[x][y] != turn) {
+			return checkDownRight(x, y);
+		} else {
+			return true;
+		}
 	}
 
 	/**
@@ -138,8 +195,17 @@ public class Othello extends JPanel {
 	 * @param y
 	 * @return
 	 */
-	public boolean checkDownRight(int x, int y) {
-		return true;
+	public boolean checkDownLeft(int r, int c) {
+		int x = r + 1;
+		int y = c - 1;
+
+		if (x < 0 || y < 0) {
+			return false;
+		} else if (board[x][y] != turn) {
+			return checkDownLeft(x, y);
+		} else {
+			return true;
+		}
 	}
 
 	/**
@@ -165,24 +231,24 @@ public class Othello extends JPanel {
 	 *
 	 */
 	private class Clicked implements ActionListener {
-		int r, c;
+		int row, col;
 
 		public Clicked(int a, int b) {
-			r = a;
-			c = b;
+			row = a;
+			col = b;
 		}
 
 		public void actionPerformed(ActionEvent e) {
-			if (board[r][c] == 0) {
-				System.out.println(checkUp(r, c));
-				System.out.println(checkDown(r, c));
-				System.out.println(checkRight(r, c));
-				System.out.println(checkLeft(r, c));
+			if (board[row][col] == 0) {
+				checkUp(row, col);
+				checkDown(row, col);
+				checkRight(row, col);
+				checkLeft(row, col);
 
-				System.out.println(checkUpRight(r, c));
-				System.out.println(checkUpLeft(r, c));
-				System.out.println(checkUpRight(r, c));
-				System.out.println(checkUpLeft(r, c));
+				checkUpRight(row, col);
+				checkUpLeft(row, col);
+				checkUpRight(row, col);
+				checkUpLeft(row, col);
 			}
 		}
 
