@@ -74,20 +74,21 @@ public class Othello extends JPanel {
 		int x = r - 1;
 		int y = c;
 
-		if (x < 0) {
-			while (!xIndexes.empty()) {
-				xIndexes.pop();
-				yIndexes.pop();
+		while (x >= 0) {
+			if (board[x][y] != turn) {
+				xIndexes.push(x);
+				yIndexes.push(y);
+				x = x - 1;
+			} else {
+				flipButtons();
+				return true;
 			}
-			return false;
-		} else if (board[x][y] != turn) {
-			xIndexes.push(x);
-			yIndexes.push(y);
-			return checkUp(x, y);
-		} else {
-			flipButtons();
-			return true;
 		}
+		while (!xIndexes.empty()) {
+			xIndexes.pop();
+			yIndexes.pop();
+		}
+		return false;
 	}
 
 	/**
@@ -100,20 +101,21 @@ public class Othello extends JPanel {
 		int x = r + 1;
 		int y = c;
 
-		if (x > 7) {
-			while (!xIndexes.empty()) {
-				xIndexes.pop();
-				yIndexes.pop();
+		while (x <= 7) {
+			if (board[x][y] != turn) {
+				xIndexes.push(x);
+				yIndexes.push(y);
+				x = x + 1;
+			} else {
+				flipButtons();
+				return true;
 			}
-			return false;
-		} else if (board[x][y] != turn) {
-			xIndexes.push(x);
-			yIndexes.push(y);
-			return checkDown(x, y);
-		} else {
-			flipButtons();
-			return true;
 		}
+		while (!xIndexes.empty()) {
+			xIndexes.pop();
+			yIndexes.pop();
+		}
+		return false;
 	}
 
 	/**
@@ -126,20 +128,21 @@ public class Othello extends JPanel {
 		int x = r;
 		int y = c + 1;
 
-		if (y > 7) {
-			while (!xIndexes.empty()) {
-				xIndexes.pop();
-				yIndexes.pop();
+		while (y <= 7) {
+			if (board[x][y] != turn) {
+				xIndexes.push(x);
+				yIndexes.push(y);
+				y = y + 1;
+			} else {
+				flipButtons();
+				return true;
 			}
-			return false;
-		} else if (board[x][y] != turn) {
-			xIndexes.push(x);
-			yIndexes.push(y);
-			return checkRight(x, y);
-		} else {
-			flipButtons();
-			return true;
 		}
+		while (!xIndexes.empty()) {
+			xIndexes.pop();
+			yIndexes.pop();
+		}
+		return false;
 	}
 
 	/**
@@ -152,20 +155,21 @@ public class Othello extends JPanel {
 		int x = r;
 		int y = c - 1;
 
-		if (y < 0) {
-			while (!xIndexes.empty()) {
-				xIndexes.pop();
-				yIndexes.pop();
+		while (y >= 0) {
+			if (board[x][y] != turn) {
+				xIndexes.push(x);
+				yIndexes.push(y);
+				y = y - 1;
+			} else {
+				flipButtons();
+				return true;
 			}
-			return false;
-		} else if (board[x][y] != turn) {
-			xIndexes.push(x);
-			yIndexes.push(y);
-			return checkLeft(x, y);
-		} else {
-			flipButtons();
-			return true;
 		}
+		while (!xIndexes.empty()) {
+			xIndexes.pop();
+			yIndexes.pop();
+		}
+		return false;
 	}
 
 	/**
@@ -178,20 +182,22 @@ public class Othello extends JPanel {
 		int x = r - 1;
 		int y = c + 1;
 
-		if (x < 0 || y > 7) {
-			while (!xIndexes.empty()) {
-				xIndexes.pop();
-				yIndexes.pop();
+		while (x >= 0 && y <= 7) {
+			if (board[x][y] != turn) {
+				xIndexes.push(x);
+				yIndexes.push(y);
+				x = x - 1;
+				y = y + 1;
+			} else {
+				flipButtons();
+				return true;
 			}
-			return false;
-		} else if (board[x][y] != turn) {
-			xIndexes.push(x);
-			yIndexes.push(y);
-			return checkUpRight(x, y);
-		} else {
-			flipButtons();
-			return true;
 		}
+		while (!xIndexes.empty()) {
+			xIndexes.pop();
+			yIndexes.pop();
+		}
+		return false;
 	}
 
 	/**
@@ -204,20 +210,22 @@ public class Othello extends JPanel {
 		int x = r - 1;
 		int y = c - 1;
 
-		if (x < 0 || y < 0) {
-			while (!xIndexes.empty()) {
-				xIndexes.pop();
-				yIndexes.pop();
+		while (x >= 0 && y >= 0) {
+			if (board[x][y] != turn) {
+				xIndexes.push(x);
+				yIndexes.push(y);
+				x = x - 1;
+				y = y - 1;
+			} else {
+				flipButtons();
+				return true;
 			}
-			return false;
-		} else if (board[x][y] != turn) {
-			xIndexes.push(x);
-			yIndexes.push(y);
-			return checkUpLeft(x, y);
-		} else {
-			flipButtons();
-			return true;
 		}
+		while (!xIndexes.empty()) {
+			xIndexes.pop();
+			yIndexes.pop();
+		}
+		return false;
 	}
 
 	/**
@@ -230,20 +238,22 @@ public class Othello extends JPanel {
 		int x = r + 1;
 		int y = c + 1;
 
-		if (x > 7 || y > 7) {
-			while (!xIndexes.empty()) {
-				xIndexes.pop();
-				yIndexes.pop();
+		while (x <= 7 && y <= 7) {
+			if (board[x][y] != turn) {
+				xIndexes.push(x);
+				yIndexes.push(y);
+				x = x + 1;
+				y = y + 1;
+			} else {
+				flipButtons();
+				return true;
 			}
-			return false;
-		} else if (board[x][y] != turn) {
-			xIndexes.push(x);
-			yIndexes.push(y);
-			return checkDownRight(x, y);
-		} else {
-			flipButtons();
-			return true;
 		}
+		while (!xIndexes.empty()) {
+			xIndexes.pop();
+			yIndexes.pop();
+		}
+		return false;
 	}
 
 	/**
@@ -256,20 +266,22 @@ public class Othello extends JPanel {
 		int x = r + 1;
 		int y = c - 1;
 
-		if (x > 7 || y < 0) {
-			while (!xIndexes.empty()) {
-				xIndexes.pop();
-				yIndexes.pop();
+		while (x <= 7 && y >= 0) {
+			if (board[x][y] != turn) {
+				xIndexes.push(x);
+				yIndexes.push(y);
+				x = x + 1;
+				y = y - 1;
+			} else {
+				flipButtons();
+				return true;
 			}
-			return false;
-		} else if (board[x][y] != turn) {
-			xIndexes.push(x);
-			yIndexes.push(y);
-			return checkDownLeft(x, y);
-		} else {
-			flipButtons();
-			return true;
 		}
+		while (!xIndexes.empty()) {
+			xIndexes.pop();
+			yIndexes.pop();
+		}
+		return false;
 	}
 
 	/**
@@ -300,8 +312,6 @@ public class Othello extends JPanel {
 		} else {
 			board[r][c] = 1;
 		}
-
-		updateButtons();
 	}
 
 	/**
@@ -345,11 +355,10 @@ public class Othello extends JPanel {
 				} else {
 					turn = 1;
 				}
+
+				updateButtons();
 			}
 		}
 
 	}
 }
-
-//todo need to update the turns, flip the clicked spots, and check the spot to see if it is valid
-//also edit the layout if u can
