@@ -17,6 +17,4 @@ public class Driver
 
 //todo need to update the turns, flip the clicked spots, and check the spot to see if it is valid
 //add a counter and text
-//change the recusion method to while loops
-
-//make a temp x and y arraylist and add to xindexs and yindexes before return true
+//check to see if the move is valid
