@@ -14,7 +14,5 @@ public class Driver
       frame.setVisible(true);
    }
 }
-
-//todo need to update the turns, flip the clicked spots, and check the spot to see if it is valid
 //add a counter and text
-//check to see if the move is valid
+//have to check if the current player has a possible turn if not go next person
