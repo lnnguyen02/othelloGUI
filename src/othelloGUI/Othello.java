@@ -38,10 +38,9 @@ public class Othello extends JPanel {
 	private int whiteCounter;
 	private int blackCounter;
 	private JPanel bottom;
-	// private
 
 	/**
-	 * No arg constructor. 
+	 * No arg constructor.
 	 */
 	public Othello() {
 		setLayout(new BorderLayout());
@@ -93,7 +92,18 @@ public class Othello extends JPanel {
 		bottom.add(counter);
 		add(bottom, BorderLayout.PAGE_END);
 	}
-
+	
+	/**
+	 * Checks up to see if the player has made a connection to another piece with his move.
+	 * Same with the other boolean methods. They all just check the different directions.
+	 * 
+	 * @param r row number
+	 * @param c column number
+	 * @param temp True when using for regular moves. False when validmoves() uses this method for checking
+	 * 	           if a player has any valid moves and if not, go to the next player.
+	 * 
+	 * @return True if there is a connection up of where the piece was placed. False otherwise.
+	 */
 	public boolean checkUp(int r, int c, boolean temp) {
 		int x = r - 1;
 		int y = c;
