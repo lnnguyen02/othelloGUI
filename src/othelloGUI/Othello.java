@@ -41,7 +41,7 @@ public class Othello extends JPanel {
 	// private
 
 	/**
-	 * No arg constructor.
+	 * No arg constructor. 
 	 */
 	public Othello() {
 		setLayout(new BorderLayout());
