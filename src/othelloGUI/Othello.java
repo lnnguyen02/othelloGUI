@@ -30,7 +30,7 @@ import java.util.Stack;
 public class Othello extends JPanel {
 
 	private int[][] board;
-	private int turn = 1;
+	private int turn;
 	private JButton[][] buttons;
 	private Stack<Point> points = new Stack<>();
 	private ArrayList<Integer> zeros = new ArrayList<>();
@@ -41,7 +41,7 @@ public class Othello extends JPanel {
 	// private
 
 	/**
-	 * 
+	 * No arg constructor.
 	 */
 	public Othello() {
 		setLayout(new BorderLayout());
@@ -64,11 +64,14 @@ public class Othello extends JPanel {
 				index++;
 			}
 		}
-
+		
+		//Board Set up
+		turn = 1;
 		board[3][3] = 2;
 		board[3][4] = 1;
 		board[4][3] = 1;
 		board[4][4] = 2;
+		//
 
 		// row*8 + column
 		zeros.remove(zeros.indexOf(3 * 8 + 3));
@@ -387,14 +390,8 @@ public class Othello extends JPanel {
 					flipButtons();
 					if (turn == 1) {
 						turn = 2;
-						if (!checkForValidTurns()) {
-							turn = 1;
-						}
 					} else {
 						turn = 1;
-						if (!checkForValidTurns()) {
-							turn = 2;
-						}
 					}
 				}
 			}

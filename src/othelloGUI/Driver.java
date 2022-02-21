@@ -14,5 +14,4 @@ public class Driver
       frame.setVisible(true);
    }
 }
-//add a counter and text
-//have to check if the current player has a possible turn if not go next person
+//need to fix the validmoves left
